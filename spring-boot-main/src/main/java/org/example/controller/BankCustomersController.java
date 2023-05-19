@@ -1,7 +1,7 @@
 package org.example.controller;
 
 import org.example.BankCustomer;
-import org.example.services.BankCustomersService;
+import org.example.service.BankCustomersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,26 +19,24 @@ public class BankCustomersController {
     @Autowired
     BankCustomersService bankCustomersService;
 
-    @GetMapping(value = "/{customerid}", produces = {"application/json"})
-    public BankCustomer getCustomerDetails() {
-        System.out.println("Get customer called");
-        return null;
+    @GetMapping(value = "/{customerName}", produces = {"application/json"})
+    public BankCustomer getCustomerDetails(@PathVariable("customerName") final String bankCustomerName) {
+        return bankCustomersService.getCustomerDetail(bankCustomerName);
     }
 
     @PostMapping(produces = {"application/json"})
     public void createCustomer(@RequestBody BankCustomer bankCustomer) {
-        System.out.println("Create customer called");
         bankCustomersService.createCustomer(bankCustomer);
     }
 
-    @DeleteMapping(value = "/{customerid}", produces = {"application/json"})
-    public void deleteCustomer() {
-        System.out.println("Delete customer called");
+    @DeleteMapping(value = "/{customerName}", produces = {"application/json"})
+    public void deleteCustomer(@PathVariable("customerName") final String bankCustomerName) {
+        bankCustomersService.removeCustomer(bankCustomerName);
     }
 
-    @PutMapping(value = "/{customerid}", produces = {"application/json"})
-    public void updateCustomer() {
-        System.out.println("Update customer called");
+    @PutMapping(value = "/{customerName}", produces = {"application/json"})
+    public void updateCustomer(@PathVariable("customerName") final String bankCustomerName, @RequestBody BankCustomer bankCustomerUpdated) {
+        bankCustomersService.updateCustomer(bankCustomerName, bankCustomerUpdated);
     }
 
 }

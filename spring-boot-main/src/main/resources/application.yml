@@ -1,18 +1,3 @@
 
 
 spring.application.name: bank-customers-service
-
-management:
-  metrics:
-    enable:
-      all: false
-      http.server.requests: true
-      system.cpu.count: true
-      executor: true
-      httpcomponents: true
-  endpoints:
-    web:
-      base-path: /management
-      exposure:
-        include: info, health, metrics, prometheus, loggers
-      password: password123
