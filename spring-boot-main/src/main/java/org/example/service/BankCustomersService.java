@@ -1,15 +1,16 @@
 package org.example.service;
 
 import org.example.BankCustomer;
-import org.example.dao.DataHolder;
 import org.example.dao.IDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BankCustomersService {
 
     @Autowired
+    @Qualifier("SimpleDao")
     IDao iDao;
 
     public void createCustomer(BankCustomer bankCustomer) {
