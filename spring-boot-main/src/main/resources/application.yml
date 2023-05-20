@@ -11,6 +11,7 @@ management:
       executor: true
       httpcomponents: true
   endpoints:
+    customization: true
     web:
       base-path: /management
       exposure:
@@ -35,6 +36,7 @@ spring.config.activate.on-profile:
 
 management:
   endpoints:
+    customization: false
     web:
       userid: test
       password: test123
@@ -47,6 +49,7 @@ spring.config.activate.on-profile:
 
 management:
   endpoints:
+    customization: false
     web:
       userid: local
       password: local123
