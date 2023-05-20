@@ -15,8 +15,8 @@ management:
       base-path: /management
       exposure:
         include: info, health, metrics, prometheus, loggers
-      userid: local
-      password: password123
+      userid: prod
+      password: prod123
 
 secure:
   endpoints:
@@ -26,3 +26,27 @@ secure:
     - "/swagger-resources/**"
     - "/v3/api-docs/**"
     - "/management/health/**"
+
+---
+
+spring.config.activate.on-profile:
+  - test
+  - load-test
+
+management:
+  endpoints:
+    web:
+      userid: test
+      password: test123
+
+
+---
+
+spring.config.activate.on-profile:
+  - local
+
+management:
+  endpoints:
+    web:
+      userid: local
+      password: local123
