@@ -1,5 +1,6 @@
 package org.example.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,20 +14,27 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+import java.util.List;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
 
-    //@Value("${management.endpoints.web.password}")
-    //private String password;
+    @Value("${management.endpoints.web.userid}")
+    private String userId;
+
+    @Value("${management.endpoints.web.password}")
+    private String password;
+
+    @Autowired
+    WebSecurityConfigProps webSecurityConfigProps;
 
     @Bean
     public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
-        UserDetails admin = User.withUsername("test")
-                .password(passwordEncoder.encode("password123"))
+        UserDetails admin = User.withUsername(userId)
+                .password(passwordEncoder.encode(password))
                 .roles("ADMIN_ROLE")
                 .build();
-
         return new InMemoryUserDetailsManager(admin);
     }
 
@@ -39,17 +47,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authorize -> authorize
                         // Regular endpoints (protected by JWT)
-                        .requestMatchers(
-                                // API is used in AH-Users, AH-RPM and AH-PRE-CACHE
-                                "/api/**",
-                                // JWK Endpoint for AH-Users
-                                "/jwk/**",
-                                // Swagger-endpoints
-                                "/swagger-ui.html",
-                                "/swagger-resources/**",
-                                "/v3/api-docs/**",
-                                // Management - Health is always open, the rest requires userId/password
-                                "/management/health/**")
+                        .requestMatchers(webSecurityConfigProps.getEndpoints().toArray(String[]::new))
                         .permitAll()
                         // Other management-endponts require management-role
                         .requestMatchers("/management/**")

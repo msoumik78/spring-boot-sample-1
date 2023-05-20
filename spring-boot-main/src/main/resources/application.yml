@@ -15,4 +15,14 @@ management:
       base-path: /management
       exposure:
         include: info, health, metrics, prometheus, loggers
+      userid: local
       password: password123
+
+secure:
+  endpoints:
+    - "/api/**"
+    - "/jwk/**"
+    - "/swagger-ui.htm"
+    - "/swagger-resources/**"
+    - "/v3/api-docs/**"
+    - "/management/health/**"
