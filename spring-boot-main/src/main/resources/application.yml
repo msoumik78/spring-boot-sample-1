@@ -23,7 +23,8 @@ secure:
   endpoints:
     - "/api/**"
     - "/jwk/**"
-    - "/swagger-ui.htm"
+    - "/swagger-ui.html"
+    - "/swagger-ui/**"
     - "/swagger-resources/**"
     - "/v3/api-docs/**"
     - "/management/health/**"
