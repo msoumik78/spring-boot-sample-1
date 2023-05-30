@@ -1,4 +1,6 @@
 package org.example;
 
-public record BankCustomer(String name, int age, String city, String state, String profession) {
+import jakarta.validation.constraints.NotNull;
+
+public record BankCustomer(@NotNull String name, @NotNull int age, @NotNull String city,@NotNull String state, @NotNull String profession) {
 }

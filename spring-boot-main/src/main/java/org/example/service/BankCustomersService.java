@@ -2,6 +2,7 @@ package org.example.service;
 
 import org.example.BankCustomer;
 import org.example.dao.IDao;
+import org.example.exception.BusinessException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,12 @@ public class BankCustomersService {
     }
 
     public BankCustomer getCustomerDetail(String bankCustomerName) {
-        return iDao.getCustomerDetail(bankCustomerName);
+        BankCustomer bankCustomer=  iDao.getCustomerDetail(bankCustomerName);
+        if (bankCustomer == null) {
+            throw new BusinessException("Customer does not exist");
+        } else {
+            return bankCustomer;
+        }
     }
 
     public void removeCustomer(String bankCustomerName) {
