@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>spring-boot-data</artifactId>
+    <artifactId>bank-customers-core-data</artifactId>
     <packaging>jar</packaging>
 
 
