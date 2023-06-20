@@ -1,12 +1,0 @@
-
-„
-java:S1104
-"iMake bankCustomerConcurrentHashMap a static final constant or non-public and provide accessors if needed.(Œ½Ğ¦úÿÿÿÿ
-^
-java:S1444
-"CMake this "public static bankCustomerConcurrentHashMap" field final(Œ½Ğ¦úÿÿÿÿ
-?
-java:S2386
-"Make this member "protected".(Œ½Ğ¦úÿÿÿÿ8°êœ1
-P
-java:S1118":Add a private constructor to hide the implicit public one.(Ü¿°û
