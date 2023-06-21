@@ -12,5 +12,6 @@ management:
       httpcomponents: true
   endpoints:
     web:
+      base-path: /management
       exposure:
-        include: loggers, info, health
+        include: loggers, info, health, metrics
