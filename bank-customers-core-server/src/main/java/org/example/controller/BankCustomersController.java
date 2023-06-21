@@ -2,7 +2,6 @@ package org.example.controller;
 
 import org.example.BankCustomer;
 import org.example.service.BankCustomersService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,8 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/1/bank-customers")
 public class BankCustomersController {
 
-    @Autowired
-    BankCustomersService bankCustomersService;
+    private BankCustomersService bankCustomersService;
 
     @GetMapping(value = "/{customerName}", produces = {"application/json"})
     public BankCustomer getCustomerDetails(@PathVariable("customerName") final String bankCustomerName) {
